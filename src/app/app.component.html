@@ -10,16 +10,6 @@
       [center]="center"
       [options]="options"
     >
-      <map-marker
-        #markerElem
-        *ngFor="let marker of markers"
-        [position]="marker.position"
-        [label]="marker.label"
-        [title]="marker.title"
-        [options]="marker.options"
-      >
-      </map-marker>
-      <map-info-window>{{ infoContent }}</map-info-window>
     </google-map>
   </div>
   <mat-card
@@ -47,15 +37,24 @@
           </tr>
         </table>
       </form>
-      latitude {{center.lat}}
-      longitude {{center.lng}}
+      <button class="btn" mat-raised-button (click)="displayMapWeather()">Update Weather</button>
+      <mat-card style="margin-top: 5px;">
+        <h3>
+          Current Weather
+        </h3>
+        <mat-form-field style="width: 100%">
+          <mat-label>Temperature (Degrees Celsius)</mat-label>
+          <input matInput [(ngModel)]="currentWeather.current_weather.temperature" name="temperature" placeholder="Ex. 37.210388">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <mat-label>Wind Speed (kmh)</mat-label>
+          <input matInput [(ngModel)]="currentWeather.current_weather.windspeed" name="temperature" placeholder="Ex. 37.210388">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <mat-label>Weather Code</mat-label>
+          <input matInput [(ngModel)]="currentWeather.current_weather.weathercode" name="temperature" placeholder="Ex. 37.210388">
+        </mat-form-field>
+      </mat-card>
 
   </mat-card>
 </div>
-
-{{currentWeather | json}}
-<button (click)="zoomIn()">Zoom in</button>
-<button (click)="zoomOut()">Zoom out</button>
-<button (click)="logCenter()">Log center</button>
-<button (click)="addMarker()">Add marker</button>
-<button (click)="displayMapWeather()">displayMapWeather</button>

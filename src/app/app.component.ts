@@ -18,7 +18,22 @@ export class AppComponent implements OnInit {
     lng: -93.297256
   };
 
-  currentWeather?: CurrentWeather;
+  currentWeather: CurrentWeather = {
+    latitude: 37.210388,
+    longitude: -93.297256,
+    generationtime_ms: 0,
+    utc_offset_seconds: 0,
+    timezone: "GMT",
+    timezone_abbreviation: "GMT",
+    elevation: 0,
+    current_weather: {
+      temperature: 0,
+      windspeed: 0,
+      winddirection: 0,
+      weathercode: 0,
+      time: 'time'
+    }
+  };
 
   options: google.maps.MapOptions = {
     zoomControl: true,
@@ -36,6 +51,7 @@ export class AppComponent implements OnInit {
     this.weatherService.getWeather(this.center.lat, this.center.lng)
       .subscribe((currentWeather: CurrentWeather) => {
         this.currentWeather = currentWeather;
+        console.log(this.currentWeather)
       });
   }
 
@@ -61,36 +77,9 @@ export class AppComponent implements OnInit {
       }
     }
 
-    console.log(this.center);
-  }
-
-  zoomIn() {
-    if (this.zoom < this.options.maxZoom!) this.zoom++;
-  }
-  zoomOut() {
-    if (this.zoom > this.options.minZoom!) this.zoom--;
-  }
-  click(event: google.maps.KmlMouseEvent) {
-    console.log(event);
-  }
-  logCenter() {
-    console.log(JSON.stringify(this.map!.getCenter()));
-  }
-  addMarker() {
-    this.markers.push({
-      position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
-      },
-      label: {
-        color: 'red',
-        text: 'Marker label ' + (this.markers.length + 1),
-      },
-      title: 'Marker title ' + (this.markers.length + 1),
-      info: 'Marker info ' + (this.markers.length + 1),
-      options: {
-        animation: google.maps.Animation.BOUNCE,
-      },
-    });
+    this.weatherService.getWeather(this.center.lat, this.center.lng)
+      .subscribe((currentWeather: CurrentWeather) => {
+        this.currentWeather = currentWeather;
+      });
   }
 }

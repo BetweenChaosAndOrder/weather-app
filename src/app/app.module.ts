@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatCardModule,
     MatInputModule,
     MatGridListModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
