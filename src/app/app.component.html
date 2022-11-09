@@ -1,21 +1,58 @@
-<google-map
-  height="500px"
-  width="100%"
-  [zoom]="zoom"
-  [center]="center"
-  [options]="options"
->
-  <map-marker
-    #markerElem
-    *ngFor="let marker of markers"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"
+<div
+  style="display: flex;">
+  <div
+    style="width: 66vw"
   >
-  </map-marker>
-  <map-info-window>{{ infoContent }}</map-info-window>
-</google-map>
+    <google-map
+      width="100%"
+      height="100vh"
+      [zoom]="zoom"
+      [center]="center"
+      [options]="options"
+    >
+      <map-marker
+        #markerElem
+        *ngFor="let marker of markers"
+        [position]="marker.position"
+        [label]="marker.label"
+        [title]="marker.title"
+        [options]="marker.options"
+      >
+      </map-marker>
+      <map-info-window>{{ infoContent }}</map-info-window>
+    </google-map>
+  </div>
+  <mat-card
+    style="width: 33vw"
+  >
+
+      <h3>
+        Input Latitude and Longitude
+      </h3>
+      <form action="">
+        <table>
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-label>Latitude</mat-label>
+                <input matInput [(ngModel)]="center.lat" name="latitude" placeholder="Ex. 37.210388">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <mat-label>Longitude</mat-label>
+                <input matInput [(ngModel)]="center.lng" name="longitude" placeholder="Ex. -93.297256">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </form>
+      latitude {{center.lat}}
+      longitude {{center.lng}}
+
+  </mat-card>
+</div>
+
 {{currentWeather | json}}
 <button (click)="zoomIn()">Zoom in</button>
 <button (click)="zoomOut()">Zoom out</button>

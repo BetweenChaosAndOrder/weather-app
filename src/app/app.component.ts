@@ -54,8 +54,14 @@ export class AppComponent implements OnInit {
     let currentLatitude: number | undefined = this.map?.getCenter()?.lat();
     let currentLongitude: number | undefined = this.map?.getCenter()?.lng();
 
-    console.log(currentLatitude);
-    console.log(currentLongitude);
+    if(currentLatitude !== undefined && currentLongitude !== undefined) {
+      this.center = {
+        lat: currentLatitude,
+        lng: currentLongitude
+      }
+    }
+
+    console.log(this.center);
   }
 
   zoomIn() {
